@@ -1,0 +1,19 @@
+{
+  "name": "curso-practico-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indux/curso-practico-api.git"
+  },
+  "author": "@Cristian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/indux/curso-practico-api/issues"
+  },
+  "homepage": "https://github.com/indux/curso-practico-api#readme"
+}
