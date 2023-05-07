@@ -8,15 +8,12 @@ const API = axios.create({
   },
 });
 
-async function getTrendingMoviesPreview() {
-  const { data } = await API("trending/movie/day");
+// UTILS
 
-  const trendingMoviesPreviewList = document.querySelector(
-    "#trendingPreview .trendingPreview-movieList"
-  );
+function createMovies(movies, container) {
+  container.innerHTML = "";
 
   const arrMovies = [];
-  const movies = data.results;
 
   movies.forEach((movie) => {
     const movieContainer = document.createElement("div");
@@ -34,18 +31,13 @@ async function getTrendingMoviesPreview() {
 
     arrMovies.push(movieContainer);
   });
-  trendingMoviesPreviewList.append(...arrMovies);
+  container.append(...arrMovies);
 }
 
-async function getCategoriesPreview() {
-  const { data } = await API("genre/movie/list");
-
-  const categoriesPreviewList = document.querySelector(
-    "#categoriesPreview .categoriesPreview-list"
-  );
+function createCategories(categories, container) {
+  container.innerHTML = "";
 
   const arrCategories = [];
-  const categories = data.genres;
 
   categories.forEach((category) => {
     const categoryContainer = document.createElement("div");
@@ -54,6 +46,9 @@ async function getCategoriesPreview() {
     const categoryTitle = document.createElement("h3");
     categoryTitle.classList.add("category-title");
     categoryTitle.setAttribute("id", "id" + category.id);
+    categoryTitle.addEventListener("click", () => {
+      location.hash = `#category=${category.id}-${category.name}`;
+    });
 
     const categoryTitleText = document.createTextNode(category.name);
 
@@ -62,5 +57,36 @@ async function getCategoriesPreview() {
 
     arrCategories.push(categoryContainer);
   });
-  categoriesPreviewList.append(...arrCategories);
+  container.append(...arrCategories);
+}
+
+// APIs
+
+async function getTrendingMoviesPreview() {
+  const { data } = await API("trending/movie/day");
+  const movies = data.results;
+
+  createMovies(movies, trendingMoviesPreviewList);
+}
+
+async function getCategoriesPreview() {
+  const { data } = await API("genre/movie/list", {
+    params: {
+      lenguage: "es",
+    },
+  });
+  const categories = data.genres;
+
+  createCategories(categories, categoriesPreviewList);
+}
+
+async function getMoviesbyCategory(id) {
+  const { data } = await API("discover/movie", {
+    params: {
+      with_genres: id,
+    },
+  });
+  const movies = data.results;
+
+  createMovies(movies, genericSection);
 }
