@@ -126,11 +126,12 @@ footer {
   justify-content: space-between;
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 /* Header */
 .header-container {
-  padding-top: 40px;
+  padding-top: 30px;
 }
 
 .header-container--long {
@@ -391,17 +392,6 @@ footer {
   height: 187.5px;
   min-height: 187.5px;
   max-height: 187.5px;
-}
-
-/* Footer */
-footer {
-  background-color: var(--purple-medium-3);
-  color: var(--purple-light-2);
-  text-align: center;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* Navigation */
