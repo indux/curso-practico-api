@@ -44,7 +44,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
   padding: 0;
 }
@@ -69,6 +70,15 @@ h3 {
   color: var(--purple-dark-2);
   font-weight: var(--font-weight-text2);
   font-size: 16px;
+}
+
+h4 {
+  color: var(--purple-dark-2);
+  font-weight: var(--font-weight-text2);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 input {
@@ -96,23 +106,101 @@ button {
 /* Shared */
 .header-container,
 .trendingPreview-header,
-.categoriesPreview-container {
+.categoriesPreview-container,
+.liked-header {
   padding: 0 24px;
 }
 
 .trendingPreview-container,
-.categoriesPreview-container,
-footer {
+.categoriesPreview-container {
   margin-top: 48px;
 }
 
 .trendingPreview-header,
-.categoriesPreview-title {
+.categoriesPreview-title,
+.liked-header {
   margin-bottom: 24px;
 }
 
 .movie-container {
   cursor: pointer;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.movie-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 3s;
+}
+
+.movie-container--loading:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.movie-container--loading:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.movie-img {
+  border-radius: 8px;
+  min-height: 250px;
+}
+
+.movie-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 35px;
+  width: 35px;
+  border-radius: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.movie-btn::before {
+  content: "🤍";
+}
+
+.movie-btn--liked {
+  background-color: var(--purple-light-2);
+}
+
+.movie-btn--liked::before {
+  content: "💜";
+}
+
+.categoriesPreview-list,
+.categories-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.category-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 3s;
+}
+
+.category-container--loading:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
 .movie-img {
@@ -186,6 +274,12 @@ footer {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
+
+.header-searchForm input:focus-visible {
+  outline: 1px solid var(--purple-dark-1);
+  border-radius: 3px;
+}
+
 .header-searchForm button {
   width: 56px;
   height: 48px;
@@ -194,7 +288,8 @@ footer {
 }
 
 /* Trending */
-.trendingPreview-header {
+.trendingPreview-header,
+.liked-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -206,21 +301,22 @@ footer {
   width: 72px;
 }
 
-.trendingPreview-movieList {
+.trendingPreview-movieList,
+.liked-movieList {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  height: 241px;
   padding-left: 24px;
-  padding-bottom: 16px;
 }
 
-.trendingPreview-movieList .movie-container {
+.trendingPreview-movieList .movie-container,
+.liked-movieList .movie-container {
   display: inline-block;
   margin-right: 8px;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
+.trendingPreview-movieList .movie-container .movie-img,
+.liked-movieList .movie-container .movie-img {
   height: 225px;
   min-height: 225px;
   max-height: 225px;
@@ -313,19 +409,20 @@ footer {
 /* Generic List (search, trending & category) */
 .genericList-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 32px 24px;
+  padding: 30px 15px;
 }
 
 .genericList-container .movie-container {
   display: inline-block;
-  width: 47.5%;
+  width: 47.25%;
+  margin-bottom: 20px;
 }
 
 .genericList-container .movie-img {
   width: 100%;
+  padding-bottom: 5px;
 }
 
 /* Movie Detail */
@@ -377,7 +474,7 @@ footer {
   overflow-y: hidden;
   white-space: nowrap;
   width: calc(100vw - 24px);
-  padding-bottom: 16px;
+  /* padding-bottom: 16px; */
 }
 
 .relatedMovies-scrollContainer .movie-container {
@@ -397,4 +494,19 @@ footer {
 /* Navigation */
 .inactive {
   display: none;
+}
+
+/* Animations */
+@keyframes loading-skeleton {
+  0%,
+  40%,
+  80%,
+  100% {
+    opacity: 100%;
+  }
+  20%,
+  60%,
+  90% {
+    opacity: 0%;
+  }
 }

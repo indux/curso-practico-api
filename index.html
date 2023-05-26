@@ -20,7 +20,18 @@
       <h1 class="header-title header-title--categoryView inactive">Acción</h1>
       <form id="searchForm" class="header-searchForm">
         <input type="text" placeholder="Vengadores" />
-        <button id="searchBtn">🔍</button>
+        <button id="searchBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+            />
+          </svg>
+        </button>
       </form>
     </header>
 
@@ -31,6 +42,12 @@
       </div>
 
       <article class="trendingPreview-movieList">
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
       </article>
     </section>
 
@@ -38,10 +55,52 @@
       <h2 class="categoriesPreview-title">Categorías</h2>
 
       <article class="categoriesPreview-list">
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+      </article>
+    </section>
+
+    <section id="liked" class="liked-container">
+      <div class="liked-header">
+        <h2 class="liked-title">Películas favoritas</h2>
+      </div>
+      <article class="liked-movieList">
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
+        <div class="movie-container">
+          <img
+            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+            class="movie-img"
+            alt="Nombre de la película"
+          />
+        </div>
       </article>
     </section>
 
     <section id="genericList" class="genericList-container inactive">
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
     </section>
 
     <section id="movieDetail" class="movieDetail-container inactive">
@@ -49,12 +108,23 @@
       <span class="movieDetail-score"></span>
       <p class="movieDetail-description"></p>
 
-      <article class="categories-list"></article>
+      <article class="categories-list">
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+      </article>
 
       <article class="relatedMovies-container">
         <h2 class="relatedMovies-title">Películas similares</h2>
 
-        <div class="relatedMovies-scrollContainer"></div>
+        <div class="relatedMovies-scrollContainer">
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+        </div>
       </article>
     </section>
 
