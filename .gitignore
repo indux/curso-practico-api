@@ -140,3 +140,9 @@ dist
 /build
 .build
 build
+
+# api
+
+src/api.js
+api.js
+/api.js
