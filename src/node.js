@@ -21,6 +21,7 @@ const relatedMoviesContainer = document.querySelector(
 const likedMoviesListArticle = document.querySelector(".liked-movieList");
 
 // Elements
+const favoriteTitle = document.querySelector(".liked-title")
 const headerTitle = document.querySelector(".header-title");
 const arrowBtn = document.querySelector(".header-arrow");
 const headerCategoryTitle = document.querySelector(

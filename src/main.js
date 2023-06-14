@@ -5,7 +5,7 @@ const API = axios.create({
   },
   params: {
     api_key: API_KEY,
-    language: "es",
+    language: "en",
   },
 });
 
@@ -26,6 +26,7 @@ function likedMovieList() {
 
 function likeMovie(movie) {
   const likedMovies = likedMovieList();
+  favoriteTitle.innerText = "Favorite Movies";
 
   if (likedMovies[movie.id]) {
     likedMovies[movie.id] = undefined;
@@ -49,7 +50,7 @@ const LazyLoader = new IntersectionObserver((entries) => {
 function createMovies(
   movies,
   container,
-  { LazyLoad = false, clean = true, title = true } = {}
+  { LazyLoad = false, clean = true, title = true, isTitleExtend = false } = {}
 ) {
   if (clean) {
     container.innerHTML = "";
@@ -64,15 +65,8 @@ function createMovies(
     const movieIMG = document.createElement("img");
     movieIMG.classList.add("movie-img");
     movieIMG.setAttribute("alt", movie.title);
-    movieIMG.setAttribute(
-      LazyLoad ? "data-img" : "src",
-      "https://image.tmdb.org/t/p/w300" + movie.poster_path
-    );
     movieIMG.addEventListener("error", () => {
-      movieIMG.setAttribute(
-        "src",
-        "https://firebasestorage.googleapis.com/v0/b/picassoai.appspot.com/o/nophoto.jpg?alt=media&token=dde08dc4-948e-4b27-bdb2-1ab08b6b6ac0"
-      );
+      movieContainer.style.display = "none";
     });
     movieIMG.addEventListener("click", () => {
       location.hash = "#movie=" + movie.id;
@@ -80,31 +74,57 @@ function createMovies(
 
     const movieBtn = document.createElement("button");
     movieBtn.classList.add("movie-btn");
-    likedMovieList()[movie.id] && movieBtn.classList.add("movie-btn--liked");
+
+    if (likedMovieList()[movie.id]) {
+      movieBtn.classList.add("movie-btn--liked");
+    }
+
     movieBtn.addEventListener("click", () => {
       movieBtn.classList.toggle("movie-btn--liked");
       likeMovie(movie);
-      if ((location.hash = "#home")) {
+
+      if (location.hash = "#home") {
         getLikedMovies();
       }
     });
 
-    const movieDate = document.createElement("h4");
-    movieDate.innerText = movie.title;
+    const ContainerMovieData = document.createElement("div");
+    ContainerMovieData.classList.add("container-data-movie");
 
     if (LazyLoad) {
+      movieIMG.setAttribute(
+        "data-img",
+        "https://image.tmdb.org/t/p/w300" + movie.poster_path
+      );
       LazyLoader.observe(movieIMG);
+    } else {
+      movieIMG.setAttribute(
+        "src",
+        "https://image.tmdb.org/t/p/w300" + movie.poster_path
+      );
     }
 
     movieContainer.append(movieIMG);
     movieContainer.append(movieBtn);
 
     if (title) {
-      movieContainer.append(movieDate);
+      const ContainerMovieData = document.createElement("div");
+      ContainerMovieData.classList.add("container-data-movie");
+
+      if (isTitleExtend) {
+        ContainerMovieData.classList.remove("container-data-movie");
+      }
+
+      const movieDate = document.createElement("h4");
+      movieDate.innerText = decodeURIComponent(movie.title);
+
+      ContainerMovieData.append(movieDate);
+      movieContainer.append(ContainerMovieData);
     }
 
     arrMovies.push(movieContainer);
   });
+
   container.append(...arrMovies);
 }
 
@@ -150,7 +170,7 @@ async function getTrendingMoviesPreview() {
 async function getCategoriesPreview() {
   const { data } = await API("genre/movie/list", {
     params: {
-      lenguage: "es",
+      language: "en",
     },
   });
   const categories = data.genres;
@@ -174,6 +194,7 @@ async function getMoviesbyCategory(id) {
   createMovies(movies, genericSection, {
     LazyLoad: true,
     clean: true,
+    isTitleExtend: true
   });
 }
 
@@ -198,6 +219,7 @@ function getPaginatedMoviesbyCategory(id) {
       createMovies(movies, genericSection, {
         LazyLoad: true,
         clean: false,
+        isTitleExtend: true,
       });
     }
   };
@@ -212,7 +234,9 @@ async function getMoviesbySearch(query) {
   const movies = data.results;
   maxPage = data.total_pages;
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, {
+    isTitleExtend: true,
+  });
 }
 
 function getPaginatedMoviesbySearch(query) {
@@ -236,6 +260,7 @@ function getPaginatedMoviesbySearch(query) {
       createMovies(movies, genericSection, {
         LazyLoad: true,
         clean: false,
+        isTitleExtend: true,
       });
     }
   };
@@ -249,6 +274,7 @@ async function getTrendingMovies() {
   createMovies(movies, genericSection, {
     LazyLoad: true,
     clean: true,
+    isTitleExtend: true,
   });
 }
 
@@ -271,6 +297,7 @@ async function getPaginatedTrendingMovies() {
     createMovies(movies, genericSection, {
       LazyLoad: true,
       clean: false,
+      isTitleExtend: true
     });
   }
 }

@@ -1,6 +1,8 @@
 /* General */
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px
 }
 
 :root {
@@ -25,10 +27,6 @@
   --font-weight-title2: 700;
   --font-weight-text1: 400;
   --font-weight-text2: 500;
-}
-
-html {
-  /* background-color: var(--purple-medium-3); */
 }
 
 body {
@@ -307,6 +305,8 @@ button {
   overflow-y: hidden;
   white-space: nowrap;
   padding-left: 24px;
+  padding-bottom: 15px;
+  height: 0%;
 }
 
 .trendingPreview-movieList .movie-container,
@@ -323,6 +323,18 @@ button {
   width: 150px;
   min-width: 150px;
   max-width: 150px;
+}
+
+.container-data-movie-more {
+  margin: auto;
+  width: 150px;
+}
+
+.container-data-movie {
+  margin: auto;
+  width: 150px;
+  padding-bottom: 10px;
+  overflow-x: scroll;
 }
 
 /* Categories */
@@ -474,7 +486,7 @@ button {
   overflow-y: hidden;
   white-space: nowrap;
   width: calc(100vw - 24px);
-  /* padding-bottom: 16px; */
+  padding-bottom: 15px;
 }
 
 .relatedMovies-scrollContainer .movie-container {
@@ -483,12 +495,12 @@ button {
 }
 
 .relatedMovies-scrollContainer .movie-img {
-  width: 125px;
-  min-width: 125px;
-  max-width: 125px;
-  height: 187.5px;
-  min-height: 187.5px;
-  max-height: 187.5px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
 }
 
 /* Navigation */

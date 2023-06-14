@@ -11,15 +11,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/app.css" />
-    <title>Peliculas</title>
+    <title>Movies | All the cinema in your hand.</title>
   </head>
   <body>
     <header id="header" class="header-container">
       <span class="header-arrow inactive">&lt;</span>
-      <h1 class="header-title">Peliculas</h1>
+      <h1 class="header-title">Movies</h1>
       <h1 class="header-title header-title--categoryView inactive">Acción</h1>
       <form id="searchForm" class="header-searchForm">
-        <input type="text" placeholder="Vengadores" />
+        <input type="text" placeholder="Avengers" />
         <button id="searchBtn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,8 +37,8 @@
 
     <section id="trendingPreview" class="trendingPreview-container">
       <div class="trendingPreview-header">
-        <h2 class="trendingPreview-title">Peliculas Tendencias</h2>
-        <button class="trendingPreview-btn">Ver más</button>
+        <h2 class="trendingPreview-title">Movies Trends</h2>
+        <button class="trendingPreview-btn">More</button>
       </div>
 
       <article class="trendingPreview-movieList">
@@ -52,7 +52,7 @@
     </section>
 
     <section id="categoriesPreview" class="categoriesPreview-container">
-      <h2 class="categoriesPreview-title">Categorías</h2>
+      <h2 class="categoriesPreview-title">Categories</h2>
 
       <article class="categoriesPreview-list">
         <div class="category-container category-container--loading"></div>
@@ -67,30 +67,15 @@
 
     <section id="liked" class="liked-container">
       <div class="liked-header">
-        <h2 class="liked-title">Películas favoritas</h2>
+        <h2 class="liked-title"></h2>
       </div>
       <article class="liked-movieList">
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
-        <div class="movie-container">
-          <img
-            src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-            class="movie-img"
-            alt="Nombre de la película"
-          />
-        </div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
       </article>
     </section>
 
@@ -115,7 +100,7 @@
       </article>
 
       <article class="relatedMovies-container">
-        <h2 class="relatedMovies-title">Películas similares</h2>
+        <h2 class="relatedMovies-title">Similar Movies</h2>
 
         <div class="relatedMovies-scrollContainer">
           <div class="movie-container movie-container--loading"></div>
