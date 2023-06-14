@@ -325,6 +325,12 @@ button {
   max-width: 150px;
 }
 
+.container-data-movie {
+  width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
 /* Categories */
 .category-container {
   width: 45%;

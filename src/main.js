@@ -5,7 +5,7 @@ const API = axios.create({
   },
   params: {
     api_key: API_KEY,
-    language: "es",
+    language: "en",
   },
 });
 
@@ -26,6 +26,7 @@ function likedMovieList() {
 
 function likeMovie(movie) {
   const likedMovies = likedMovieList();
+  favoriteTitle.innerText = "Favorite Movies";
 
   if (likedMovies[movie.id]) {
     likedMovies[movie.id] = undefined;
@@ -64,15 +65,8 @@ function createMovies(
     const movieIMG = document.createElement("img");
     movieIMG.classList.add("movie-img");
     movieIMG.setAttribute("alt", movie.title);
-    movieIMG.setAttribute(
-      LazyLoad ? "data-img" : "src",
-      "https://image.tmdb.org/t/p/w300" + movie.poster_path
-    );
     movieIMG.addEventListener("error", () => {
-      movieIMG.setAttribute(
-        "src",
-        "https://firebasestorage.googleapis.com/v0/b/picassoai.appspot.com/o/nophoto.jpg?alt=media&token=dde08dc4-948e-4b27-bdb2-1ab08b6b6ac0"
-      );
+      movieContainer.style.display = "none";
     });
     movieIMG.addEventListener("click", () => {
       location.hash = "#movie=" + movie.id;
@@ -89,22 +83,36 @@ function createMovies(
       }
     });
 
-    const movieDate = document.createElement("h4");
-    movieDate.innerText = movie.title;
+    const ContainerMovieData = document.createElement("div");
+    ContainerMovieData.classList.add("container-data-movie");
 
     if (LazyLoad) {
+      movieIMG.setAttribute(
+        "data-img",
+        "https://image.tmdb.org/t/p/w300" + movie.poster_path
+      );
       LazyLoader.observe(movieIMG);
+    } else {
+      movieIMG.setAttribute(
+        "src",
+        "https://image.tmdb.org/t/p/w300" + movie.poster_path
+      );
     }
 
     movieContainer.append(movieIMG);
     movieContainer.append(movieBtn);
 
     if (title) {
-      movieContainer.append(movieDate);
+      const movieDate = document.createElement("h4");
+      movieDate.innerText = decodeURIComponent(movie.title);
+
+      ContainerMovieData.append(movieDate);
+      movieContainer.append(ContainerMovieData);
     }
 
     arrMovies.push(movieContainer);
   });
+
   container.append(...arrMovies);
 }
 
