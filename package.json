@@ -1,5 +1,5 @@
 {
-  "name": "curso-practico-api",
+  "name": "movie-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indux/curso-practico-api.git"
+    "url": "git+https://github.com/indux/movie-app.git"
   },
   "author": "@Cristian",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/indux/curso-practico-api/issues"
+    "url": "https://github.com/indux/movie-app/issues"
   },
   "homepage": "https://github.com/indux/movie-app",
   "devDependencies": {
