@@ -50,7 +50,7 @@ const LazyLoader = new IntersectionObserver((entries) => {
 function createMovies(
   movies,
   container,
-  { LazyLoad = false, clean = true, title = true } = {}
+  { LazyLoad = false, clean = true, title = true, isTitleExtend = false } = {}
 ) {
   if (clean) {
     container.innerHTML = "";
@@ -74,11 +74,16 @@ function createMovies(
 
     const movieBtn = document.createElement("button");
     movieBtn.classList.add("movie-btn");
-    likedMovieList()[movie.id] && movieBtn.classList.add("movie-btn--liked");
+
+    if (likedMovieList()[movie.id]) {
+      movieBtn.classList.add("movie-btn--liked");
+    }
+
     movieBtn.addEventListener("click", () => {
       movieBtn.classList.toggle("movie-btn--liked");
       likeMovie(movie);
-      if ((location.hash = "#home")) {
+
+      if (location.hash = "#home") {
         getLikedMovies();
       }
     });
@@ -103,6 +108,13 @@ function createMovies(
     movieContainer.append(movieBtn);
 
     if (title) {
+      const ContainerMovieData = document.createElement("div");
+      ContainerMovieData.classList.add("container-data-movie");
+
+      if (isTitleExtend) {
+        ContainerMovieData.classList.remove("container-data-movie");
+      }
+
       const movieDate = document.createElement("h4");
       movieDate.innerText = decodeURIComponent(movie.title);
 
@@ -158,7 +170,7 @@ async function getTrendingMoviesPreview() {
 async function getCategoriesPreview() {
   const { data } = await API("genre/movie/list", {
     params: {
-      lenguage: "es",
+      language: "en",
     },
   });
   const categories = data.genres;
@@ -182,6 +194,7 @@ async function getMoviesbyCategory(id) {
   createMovies(movies, genericSection, {
     LazyLoad: true,
     clean: true,
+    isTitleExtend: true
   });
 }
 
@@ -206,6 +219,7 @@ function getPaginatedMoviesbyCategory(id) {
       createMovies(movies, genericSection, {
         LazyLoad: true,
         clean: false,
+        isTitleExtend: true,
       });
     }
   };
@@ -220,7 +234,9 @@ async function getMoviesbySearch(query) {
   const movies = data.results;
   maxPage = data.total_pages;
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, {
+    isTitleExtend: true,
+  });
 }
 
 function getPaginatedMoviesbySearch(query) {
@@ -244,6 +260,7 @@ function getPaginatedMoviesbySearch(query) {
       createMovies(movies, genericSection, {
         LazyLoad: true,
         clean: false,
+        isTitleExtend: true,
       });
     }
   };
@@ -257,6 +274,7 @@ async function getTrendingMovies() {
   createMovies(movies, genericSection, {
     LazyLoad: true,
     clean: true,
+    isTitleExtend: true,
   });
 }
 
@@ -279,6 +297,7 @@ async function getPaginatedTrendingMovies() {
     createMovies(movies, genericSection, {
       LazyLoad: true,
       clean: false,
+      isTitleExtend: true
     });
   }
 }

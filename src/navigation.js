@@ -90,7 +90,6 @@ function categoriesPage() {
   infiniteScroll = getPaginatedMoviesbyCategory(categoryID);
 }
 
-
 function movieDetailsPage() {
   headerSection.classList.add("header-container--long");
   // headerSection.style.background = "";
