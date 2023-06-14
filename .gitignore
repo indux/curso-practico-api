@@ -134,3 +134,9 @@ dist
 .vscode
 /.vscode
 /vscode
+
+# build
+
+/build
+.build
+build
