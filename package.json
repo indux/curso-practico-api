@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/indux/curso-practico-api/issues"
   },
-  "homepage": "https://github.com/indux/movie-app"
+  "homepage": "https://github.com/indux/movie-app",
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  }
 }
